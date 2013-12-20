@@ -1,12 +1,31 @@
 public class EinfachesDotComTestLauf {
 	
 	public static void main (String[] args){
-		EinfachesDotCom dotCom = new EinfachesDotCom();
-		int[] orte = {2,3,4}; // coords. vom Schiff
-		dotCom.setZellorte(orte);
+		int anzahlTipps = 0;
 		
-		String tipp ="2";
-		String ergebnis = dotCom.prüfDich(tipp);
+		SpielHelfer helfer = new SpielHelfer();
+		EinfachesDotCom dasDotCom = new EinfachesDotCom();
+		
+		int zufallsZahl = (int) (Math.random()*5);
+		int [] orte = {zufallsZahl, zufallsZahl+1,zufallsZahl+2};
+		// class EinfachesDotCom
+		dasDotCom.setZellorte(orte);
+		boolean lebt = true;
+		
+		while(lebt == true){
+			
+			// class SpielHelfer
+			String tipp = helfer.getBenutzereingabe("Geben Sie eine Zahl ein");
+			
+			// class EinfachesDotCom
+			String ergebnis = dasDotCom.prüfDich(tipp);
+			anzahlTipps++;
+			if(ergebnis.equals("Versenkt!")){
+				lebt = false;
+				System.out.println("Sie haben "+ anzahlTipps+"Versuche benötigt!");
+			}
+	
+		}
 
 		
 	}
